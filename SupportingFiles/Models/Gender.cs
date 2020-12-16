@@ -1,4 +1,4 @@
-﻿namespace BethanysPieShopHRM.Shared
+﻿namespace EmployeeHR.Models
 {
     public enum Gender
     {

@@ -508,7 +508,11 @@ Now run the app and see the data coming from the api.
 
 # Add Employee Details Page
 
-Now we can add Employee details page we see how we pass parameters in or page directive `@page "/employeedetail/{EmployeeId}"` so we can fetch the details data for the employee record by passing the employee id to the service method.
+Now we can add Employee details `EmployeeDetail.razor` page we see how we pass parameters in or page directive `@page "/employeedetail/{EmployeeId}"` so we can fetch the details data for the employee record by passing the employee id to the service method.
+
+So right click the Pages folder and select add Razor Component and create `EmployeeDetail.razor`:
+
+replace code with below:
 
 ```C#
 @page "/employeedetail/{EmployeeId}"
@@ -773,6 +777,8 @@ Add the Services to the program class
 Add `EmployeeEdit.razor` that will contain on of our controls to edit Employees we use the blazor `EditForm` as it gives more options as opposed to the html `form`.
 
 ```C#
+@using EmployeeHR.Models
+
 @if (!Saved)
 {
     <section class="employee-edit">
