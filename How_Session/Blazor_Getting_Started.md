@@ -941,6 +941,14 @@ in the shared folder open up the `NavMenu.razor` and add a `<li>`.
         </li>
 ```
 
+Also need to add edit links to the EmployeeOverview page.  Open `EmployeeOverview.razor` and add the below link:
+
+```C#
+  <a href="@($"employeeedit/{employee.EmployeeId}")" class="btn btn-primary table-btn">
+                            <i class="fas fa-edit"></i>
+                        </a>
+```
+
 Like before we will add our code behind partial class `EmployeeEdit.cs`
 
 ```C#
