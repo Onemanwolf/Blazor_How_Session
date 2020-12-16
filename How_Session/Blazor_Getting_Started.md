@@ -777,6 +777,9 @@ Add the Services to the program class
 Add `EmployeeEdit.razor` that will contain on of our controls to edit Employees we use the blazor `EditForm` as it gives more options as opposed to the html `form`.
 
 ```C#
+
+@page "/employeeedit"
+@page "/employeeedit/{EmployeeId}"
 @using EmployeeHR.Models
 
 @if (!Saved)
