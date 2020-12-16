@@ -1,6 +1,8 @@
 
-# Blazor 
+# Blazor
 [Intro to Blazor](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-5.0)
+
+[Blazor GitHub](https://github.com/dotnet/aspnetcore/tree/master/src/Components)
 
 
 # Create a Employee HR Blazor app
