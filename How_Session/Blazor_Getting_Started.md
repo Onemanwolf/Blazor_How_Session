@@ -34,7 +34,7 @@ The -n|--name option in the preceding command specifies the name of the new Razo
 
 `Pages/EmployeeOverview.razor`:
 
-```razor
+```C#
 @page "/employeeoverview"
 
 <h3>EmployeeOverview</h3>
@@ -55,7 +55,7 @@ In the unordered list (`<ul>...</ul>`) of the NavMenu component, add the followi
 
 In `Shared/NavMenu.razor`:
 
-```razor
+```C#
 <ul class="nav flex-column">
 
     ...
@@ -122,7 +122,7 @@ Navigate to the `SupportingFiles` folder and copy the files from the Models fold
 - Add unordered list markup and a foreach loop to render each EmployeeOverview item as a list item (`<li>`).
   Pages/EmployeeOverview.razor:
 
-```razor
+```C#
 
 @page "/employeeoverview"
 
@@ -288,25 +288,82 @@ public partial class EmployeeOverview
 
 ```
 
+9. Now run the app to see our progress so far.
+
 # Add Api to Project
 
 In the real world we will be calling to a Microservice or a Web Api to consume data the mock data was fine to get us started but we need to know how to call an external Restful Web Api. So lets add one. I prepared an Api for the exercise so lets go grab it and added it our solution.
 
-In the `Blazor_How_Session` folder Navigate to the `SupportingFiles` folder and copy the `EmployeeHR.Api` folder into the `src` folder.
+1. In the `Blazor_How_Session` folder Navigate to the `SupportingFiles` folder and copy the `EmployeeHR.Api` folder into the `src` folder.
 
 ![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/CopyEmployeeApi.png)
 
-Add `EmployeeHR.Api` Project to the Solution by right clicking on Solution `EmployeeHR` select Add existing project navigate to the `EmployeeHR.Api` folder that you just copied over in the `src` directory and the inside the `EmployeeHR.Api` Folder select the `EmployeeHR.Api.csproj` file to add the project to the solution.
+2. Add `EmployeeHR.Api` Project to the Solution by right clicking on Solution `EmployeeHR` select Add existing project navigate to the `EmployeeHR.Api` folder that you just copied over in the `src` directory and the inside the `EmployeeHR.Api` Folder select the `EmployeeHR.Api.csproj` file to add the project to the solution.
 
 ![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/AddExistingProject.png)
 
-We will need both projects to run, so lets go ahead and set both projects to startup in the solution properties. Right click solution and select Properties.
+3. We will need both projects to run, so lets go ahead and set both projects to startup in the solution properties. Right click solution and select Properties.
 
 ![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/SolutionPropertiesStartup.png)
 
-Now run the app by pressing F5 or the start button on the top ribbon
+4. Now run the app by pressing F5 or the start button on the top ribbon
 
 `<Multiple Startup Projects>` Start.
+
+Two browsers will open one for the Api and one for the EmployeeHR app in the browser with `https://localhost:44340` test the api by adding `/api/employee` to the url, so the url will look like this: `https://localhost:44340/api/employee` a couple of employee json documents should be returned.
+
+For Example:
+
+```json
+[
+  {
+    "employeeId": 1,
+    "firstName": "Billy",
+    "lastName": "Idol",
+    "birthDate": "1979-01-16T00:00:00",
+    "email": "billyIdol@gegmail.com",
+    "street": "Grote Markt 1",
+    "zip": "1000",
+    "city": "Brussels",
+    "countryId": 1,
+    "country": null,
+    "phoneNumber": "324777888773",
+    "smoker": false,
+    "maritalStatus": 1,
+    "gender": 1,
+    "comment": "Lorem Ipsum",
+    "joinedDate": "2015-03-01T00:00:00",
+    "exitDate": null,
+    "jobCategoryId": 1,
+    "jobCategory": null,
+    "latitude": 50.8503,
+    "longitude": 4.3517
+  },
+  {
+    "employeeId": 3,
+    "firstName": "Tim",
+    "lastName": "Oleson",
+    "birthDate": "1969-03-20T00:00:00",
+    "email": "timothy.oleson@microsoft.com",
+    "street": "1st Streets",
+    "zip": "33510",
+    "city": "Brandon ",
+    "countryId": 4,
+    "country": null,
+    "phoneNumber": "443520000",
+    "smoker": false,
+    "maritalStatus": 0,
+    "gender": 0,
+    "comment": "Customer Engineer",
+    "joinedDate": "2019-04-01T00:00:00",
+    "exitDate": null,
+    "jobCategoryId": 7,
+    "jobCategory": null,
+    "latitude": 2,
+    "longitude": 1
+  }
+]
+```
 
 # Create Services for Data
 
@@ -453,16 +510,14 @@ Now run the app and see the data coming from the api.
 
 Now we can add Employee details page we see how we pass parameters in or page directive `@page "/employeedetail/{EmployeeId}"` so we can fetch the details data for the employee record by passing the employee id to the service method.
 
-```razor
+```C#
 @page "/employeedetail/{EmployeeId}"
 
 <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
 
 
 <div class="col-12 row">
-    <div class="col-2">
-        <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Employee.EmployeeId}.jpg")" class="img-responsive rounded-circle employee-detail-img" />
-    </div>
+
     <div class="col-10 row">
         <div class="col-xs-12 col-sm-8">
             <div class="form-group row">
@@ -614,7 +669,9 @@ public partial class EmployeeDetail
 
 Now lets run the app to see the details page in action.
 
-## Add Blazor Forms
+# Add Blazor EditForm
+
+We will add a form to edit the Employee Data using Blazor's EditForm
 
 We need to added some more supporting services, that we will use to edit employee data in our `EmployeeEdit.razor` component below is a list of the elements we will be creating in this section
 
@@ -715,7 +772,7 @@ Add the Services to the program class
 
 Add `EmployeeEdit.razor` that will contain on of our controls to edit Employees we use the blazor `EditForm` as it gives more options as opposed to the html `form`.
 
-```razor
+```C#
 @if (!Saved)
 {
     <section class="employee-edit">
@@ -864,6 +921,17 @@ else
 }
 ```
 
+Lets add a link to the Navbar for the Edit page
+in the shared folder open up the `NavMenu.razor` and add a `<li>`.
+
+```C#
+<li class="nav-item px-3">
+            <NavLink class="nav-link" href="employeeedit">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Add Employee
+            </NavLink>
+        </li>
+```
+
 Like before we will add our code behind partial class `EmployeeEdit.cs`
 
 ```C#
@@ -972,3 +1040,69 @@ Like before we will add our code behind partial class `EmployeeEdit.cs`
 ```
 
 Now lets run the app to see the edit page in action.
+
+# Validation
+
+We need to place some validation in or form first we need to add another NuGet package `System.ComponentModel.Annotations`
+
+So lets right click on the EmployeeHR project and select Manage Nuget Packages and add the package.
+
+Now we can decorate our Employee Class Properties with the Validations like `Required`, `EmailAddress` and `StringLength`.
+
+```C#
+public class Employee
+{
+	public int EmployeeId { get; set; }
+	[Required]
+	[StringLength(50, ErrorMessage = "First name is too long.")]
+	public string FirstName { get; set; }
+
+	[Required]
+	[StringLength(50, ErrorMessage = "Last name is too long.")]
+	public string LastName { get; set; }
+
+	public DateTime BirthDate { get; set; }
+
+	[Required]
+	[EmailAddress]
+	public string Email { get; set; }
+	public string Street { get; set; }
+	public string Zip { get; set; }
+	public string City { get; set; }
+	public int CountryId { get; set; }
+	public Country Country { get; set; }
+	public string PhoneNumber { get; set; }
+	public bool Smoker { get; set; }
+	public MaritalStatus MaritalStatus { get; set; }
+	public Gender Gender { get; set; }
+	[StringLength(1000, ErrorMessage = "Comment length can't exceed 1000 characters.")]
+	public string Comment { get; set; }
+	public DateTime? JoinedDate { get; set; }
+	public DateTime? ExitDate { get; set; }
+
+	public int JobCategoryId { get; set; }
+	public JobCategory JobCategory { get; set; }
+
+	public double Latitude { get; set; }
+	public double Longitude { get; set; }
+}
+
+```
+
+If we go back to the EditForm in EditEmployee.razor file you will see `<DataAnnotationsValidator />`, `<ValidationSummary></ValidationSummary>`and for individual properties ` <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.LastName)" />`
+
+```C#
+@if (!Saved)
+{
+    <section class="employee-edit">
+        <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
+        <EditForm Model="@Employee" OnValidSubmit="@HandleValidSubmit"
+                  OnInvalidSubmit="@HandleInvalidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary></ValidationSummary>
+            <div class="form-group row">
+                <label for="lastName" class="col-sm-3">Last name: </label>
+                <InputText id="lastName" class="form-control col-sm-8" @bind-Value="@Employee.LastName" placeholder="Enter last name"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.LastName)" />
+
+```
