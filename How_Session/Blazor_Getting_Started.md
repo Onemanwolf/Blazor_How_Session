@@ -27,7 +27,7 @@ dotnet new razorcomponent -n EmployeeOverview -o Pages
 
 The -n|--name option in the preceding command specifies the name of the new Razor component. The new component is created in the project's Pages folder with the -o|--output option.
 
-> Important
+> Important :sushi:
 > Razor component file names require a capitalized first letter. Open the Pages folder and confirm that the `EmployeeOverview` component file name starts with a capital letter T. The file name should be `EmployeeOverview.razor`.
 
 3. Open the `EmployeeOverview` component in any file editor and add an @page Razor directive to the top of the file with a relative URL of /EmployeeOverview.
@@ -178,6 +178,8 @@ Need to update the index.html in the wwwroot folder to included font awesome.
 />
 ```
 
+## Code Behind File
+
 8. Add a new class to the the pages folder `EmployeeOverview.cs` this will be the code behind page to remove the code for the view making for cleaner code. We use the partial modifier as IDE will complain that a `EmployeeOverview` class already exist that is because Blazor creates the class for the razor element.
 
 ```C#
@@ -286,9 +288,11 @@ public partial class EmployeeOverview
 
 ```
 
-## Add Api to Project
+# Add Api to Project
 
-Navigate to the SupportingFiles folder and copy the `EmployeeHR.Api` folder into the src folder.
+In the real world we will be calling to a Microservice or a Web Api to consume data the mock data was fine to get us started but we need to know how to call an external Restful Web Api. So lets add one. I prepared an Api for the exercise so lets go grab it and added it our solution.
+
+In the `Blazor_How_Session` folder Navigate to the `SupportingFiles` folder and copy the `EmployeeHR.Api` folder into the `src` folder.
 
 ![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/CopyEmployeeApi.png)
 
@@ -296,13 +300,15 @@ Add `EmployeeHR.Api` Project to the Solution by right clicking on Solution `Empl
 
 ![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/AddExistingProject.png)
 
-We will need both projects to run so lets go ahead and set both projects to startup in the solution properties. Right click solution and select Properties.
+We will need both projects to run, so lets go ahead and set both projects to startup in the solution properties. Right click solution and select Properties.
 
 ![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/SolutionPropertiesStartup.png)
 
-Now run the app by pressing F5 or the start button on the top ribbon <Multiple Startup Projects> Start.
+Now run the app by pressing F5 or the start button on the top ribbon
 
-## Create Services for Data
+`<Multiple Startup Projects>` Start.
+
+# Create Services for Data
 
 Create Service to get the Data from api separating the concerns of data retrieval away from the UI components.
 
@@ -379,7 +385,7 @@ Create interface `IEmployeeDataService`
 
 ```
 
-## Add Http Client Configuration
+# Add Http Client Configuration
 
 Install Nuget Package `Microsoft.Extensions.Http` right click on the EmployeeHR and select Manage NuGet packages... Browse tab and search for `Microsoft.Extensions.Http` and install version 5.0.0.
 
@@ -443,7 +449,7 @@ protected override async Task OnInitializedAsync()
 
 Now run the app and see the data coming from the api.
 
-## Add Employee Details Page
+# Add Employee Details Page
 
 Now we can add Employee details page we see how we pass parameters in or page directive `@page "/employeedetail/{EmployeeId}"` so we can fetch the details data for the employee record by passing the employee id to the service method.
 
@@ -562,6 +568,8 @@ Now we can add Employee details page we see how we pass parameters in or page di
 </div>
 
 ```
+
+## Code Behind File
 
 Now we add the code behind like we did for the employee overview page by adding a class called `EmployeeDetail.cs` we us the parameter attribute on the EmployeeId this lets blazor know this is the parameter to work with will searching for Employees Details with the `GetEmployeeDetails` method.
 
