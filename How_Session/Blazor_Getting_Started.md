@@ -28,7 +28,7 @@ dotnet new razorcomponent -n EmployeeOverview -o Pages
 The -n|--name option in the preceding command specifies the name of the new Razor component. The new component is created in the project's Pages folder with the -o|--output option.
 
 > Important
-> Razor component file names require a capitalized first letter. Open the Pages folder and confirm that the `EmployeeOverview` component file name starts with a capital letter T. The file name should be EmployeeOverview.razor.
+> Razor component file names require a capitalized first letter. Open the Pages folder and confirm that the `EmployeeOverview` component file name starts with a capital letter T. The file name should be `EmployeeOverview.razor`.
 
 3. Open the `EmployeeOverview` component in any file editor and add an @page Razor directive to the top of the file with a relative URL of /EmployeeOverview.
 
@@ -290,17 +290,15 @@ public partial class EmployeeOverview
 
 Navigate to the SupportingFiles folder and copy the `EmployeeHR.Api` folder into the src folder.
 
-![img](Images\CopyEmployeeApi.png)
+![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/CopyEmployeeApi.png)
 
 Add `EmployeeHR.Api` Project to the Solution by right clicking on Solution `EmployeeHR` select Add existing project navigate to the `EmployeeHR.Api` folder that you just copied over in the `src` directory and the inside the `EmployeeHR.Api` Folder select the `EmployeeHR.Api.csproj` file to add the project to the solution.
 
-![img](Images\AddExistingProject.png)
-
-
+![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/AddExistingProject.png)
 
 We will need both projects to run so lets go ahead and set both projects to startup in the solution properties. Right click solution and select Properties.
 
-![img](Images\SolutionPropertiesStartup.png)
+![img](https://github.com/Onemanwolf/Blazor_How_Session/blob/main/How_Session/Images/SolutionPropertiesStartup.png)
 
 Now run the app by pressing F5 or the start button on the top ribbon <Multiple Startup Projects> Start.
 
@@ -403,6 +401,7 @@ Navigate to the program.cs class in the EmployeeHR project open the program clas
         }
 
 ```
+
 Now lets add the HttpClient Factory instance like below:
 
 ```C#
@@ -618,9 +617,7 @@ We need to added some more supporting services, that we will use to edit employe
 - `EmployeeEdit.razor`
 - `EmployeeEdit.cs`
 
-
 Lets get started with the `ICountryDataService` interface this will allow us to inject the service through the built in .Net Dependency injection this will give lose coupling from implementation details.
-
 
 Add the interface to the Services folder by right clicking then add new item then add interface called `ICountryDataService` replace the code with below:
 
@@ -662,7 +659,7 @@ public class CountryDataService : ICountryDataService
 }
 ```
 
-Add interface `IJobCategoryDataService` this will allow us to inject the service and decouple us from implementation details.  Add to the service folder the interface `IJobCategoryDataService`.
+Add interface `IJobCategoryDataService` this will allow us to inject the service and decouple us from implementation details. Add to the service folder the interface `IJobCategoryDataService`.
 
 ```C#
 public interface IJobCategoryDataService
