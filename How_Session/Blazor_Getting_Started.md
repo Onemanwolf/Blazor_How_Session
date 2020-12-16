@@ -30,7 +30,9 @@ The -n|--name option in the preceding command specifies the name of the new Razo
 > :sushi: Important
 > Razor component file names require a capitalized first letter. Open the Pages folder and confirm that the `EmployeeOverview` component file name starts with a capital letter T. The file name should be `EmployeeOverview.razor`.
 
-3. Open the `EmployeeOverview` component in any file editor and add an @page Razor directive to the top of the file with a relative URL of /EmployeeOverview.
+3. Open the `EmployeeOverview` component in Visual Studio and add an @page Razor directive to the top of the file with a relative URL of /EmployeeOverview.
+
+Open Visual Studio from the Start Window select open existing Project and navigate to the `EmployeeHR` folder and open the `EmployeeHR.csproj` go to the Pages folder.
 
 `Pages/EmployeeOverview.razor`:
 
@@ -56,16 +58,14 @@ In the unordered list (`<ul>...</ul>`) of the NavMenu component, add the followi
 In `Shared/NavMenu.razor`:
 
 ```C#
-<ul class="nav flex-column">
 
-    ...
 
-    <li class="nav-item px-3">
+        <li class="nav-item px-3">
         <NavLink class="nav-link" href="employeeoverview">
             <span class="oi oi-list-rich" aria-hidden="true"></span> EmployeeOverview
         </NavLink>
     </li>
-</ul>
+
 ```
 
 Save the `Shared/NavMenu.razor` file.
