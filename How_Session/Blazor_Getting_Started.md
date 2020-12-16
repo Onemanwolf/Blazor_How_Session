@@ -1,3 +1,8 @@
+
+# Blazor 
+[Intro to Blazor](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-5.0)
+
+
 # Create a Employee HR Blazor app
 
 1. Create a new Blazor app named EmployeeHR in a command shell:
@@ -25,10 +30,18 @@ cd EmployeeHR
 dotnet new razorcomponent -n EmployeeOverview -o Pages
 ```
 
+
 The -n|--name option in the preceding command specifies the name of the new Razor component. The new component is created in the project's Pages folder with the -o|--output option.
 
 > :sushi: Important
 > Razor component file names require a capitalized first letter. Open the Pages folder and confirm that the `EmployeeOverview` component file name starts with a capital letter T. The file name should be `EmployeeOverview.razor`.
+
+
+# Project Structure
+
+[Docs](https://docs.microsoft.com/en-us/aspnet/core/blazor/project-structure?view=aspnetcore-5.0)
+
+
 
 3. Open the `EmployeeOverview` component in Visual Studio and add an @page Razor directive to the top of the file with a relative URL of /EmployeeOverview.
 
