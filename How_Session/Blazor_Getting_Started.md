@@ -1123,3 +1123,12 @@ If we go back to the EditForm in EditEmployee.razor file you will see `<DataAnno
                 <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.LastName)" />
 
 ```
+
+Now lets run the app and test validation.
+
+Click on the Add Employee link and click save button and see what happens.
+
+We can now clean up the project by removing the counter and the Fetch Data razor pages and links from the NavMenu.
+
+
+
